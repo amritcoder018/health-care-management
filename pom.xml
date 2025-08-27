@@ -29,6 +29,7 @@
         <module>laboratory-service</module>
         <module>api-gateway-service</module>
         <module>security-starter</module>
+        <module>payment-service</module>
     </modules>
     <scm>
 		<connection/>

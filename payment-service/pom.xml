@@ -8,13 +8,8 @@
         <artifactId>health-care-management</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-<dependencies>
-    <dependency>
-        <groupId>org.springframework.kafka</groupId>
-        <artifactId>spring-kafka</artifactId>
-    </dependency>
-</dependencies>
-    <artifactId>patient-service</artifactId>
+
+    <artifactId>payment-service</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

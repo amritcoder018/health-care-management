@@ -26,6 +26,7 @@ public class PatientInfo {
     private String bloodGrp;
     private String allergies;
     private boolean isDiabetic;
+    private boolean isMember;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }
