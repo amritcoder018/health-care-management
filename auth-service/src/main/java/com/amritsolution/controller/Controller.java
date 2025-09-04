@@ -5,7 +5,6 @@ import com.amritsolution.filter.AuthTokenFilter;
 import com.amritsolution.model.dto.LoginRequestDTO;
 import com.amritsolution.model.dto.LoginSuccessResponseDTO;
 import com.amritsolution.model.dto.PatientSignUpDTO;
-import com.amritsolution.service.CustomUserDetails;
 import com.amritsolution.service.JwtTokenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
