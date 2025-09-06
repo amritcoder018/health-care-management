@@ -2,6 +2,10 @@ package com.amritsolution.model;
 
 import lombok.Data;
 
+import java.time.DayOfWeek;
+import java.util.List;
+import java.util.Set;
+
 @Data
 public class DoctorInfoBase {
     private String doctorId;
@@ -13,5 +17,6 @@ public class DoctorInfoBase {
     private String branch;
     private boolean availableOnline;
     private String medicalSpecialty;
+    private Set<DayOfWeek> workingDays;
     private String experience;
 }
