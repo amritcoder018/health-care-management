@@ -1,6 +1,8 @@
 package com.amritsolution.service;
 
+import com.amritsolution.model.db.Appointment;
 import com.amritsolution.model.db.DoctorInfo;
+import com.amritsolution.model.dto.AppointmentDTO;
 import com.amritsolution.model.dto.DoctorDisplayDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class TransformerServiceImpl implements TransformerService {
         doctorDisplayDTO.setHospital(doctorInfo.getHospital());
         doctorDisplayDTO.setFullName(doctorInfo.getFullName());
         doctorDisplayDTO.setSex(doctorInfo.getSex());
+        doctorDisplayDTO.setWorkingDays(doctorInfo.getWorkingDays());
         doctorDisplayDTO.setAvailableOnline(doctorInfo.isAvailableOnline());
         doctorDisplayDTO.setMedicalSpecialty(doctorInfo.getMedicalSpecialty());
         doctorDisplayDTO.setOpdRoomNo(doctorInfo.getOpdRoomNo());
@@ -31,5 +34,10 @@ public class TransformerServiceImpl implements TransformerService {
     @Override
     public List<DoctorDisplayDTO> transformToDoctorDTOList(List<DoctorInfo> doctorInfoList) {
         return doctorInfoList.stream().map(this::transformToDoctorDTO).toList();
+    }
+
+    @Override
+    public Appointment transformDTOAppointmentToDBEntity(AppointmentDTO appointmentDTO) {
+        return null;
     }
 }

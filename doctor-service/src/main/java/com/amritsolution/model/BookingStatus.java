@@ -1,0 +1,11 @@
+package com.amritsolution.model;
+
+public enum BookingStatus {
+    PROCESSING_PAYMENT,
+    PROCESSING_REQUEST,
+    FAILED_DUE_TO_UNAVAILABLE_TOKEN,
+    FAILED_DUE_TO_DOCTOR_NOT_AVAILABLE,
+    PAYMENT_FAILED,
+    CONFIRMED,
+    PAYMENT_TIMEOUT
+}

@@ -1,6 +1,7 @@
 package com.amritsolution.service;
 
 import com.amritsolution.model.db.DoctorInfo;
+import com.amritsolution.model.dto.AppointmentDTO;
 import com.amritsolution.model.dto.DoctorDisplayDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -16,4 +17,5 @@ public interface DoctorService {
     ResponseEntity<?> addAllDoctorProfile(List<DoctorInfo> doctorInfos);
     ResponseEntity<?> updateDoctorProfile(DoctorInfo doctorInfo);
     ResponseEntity<?> deleteDoctorProfile(String doctorId);
+    ResponseEntity<?> requestAppointment(AppointmentDTO  appointmentDTO);
 }
