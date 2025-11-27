@@ -9,14 +9,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/ui")
 @Slf4j
 public class UIController {
     @Autowired
     private DoctorService doctorService;
+
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/getAll")
     public ResponseEntity<Page<DoctorDisplayDTO>> getDoctorDTOs(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size)
     {
