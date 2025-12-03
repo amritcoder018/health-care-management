@@ -4,14 +4,19 @@ import com.amritsolution.model.db.Appointment;
 import com.amritsolution.model.db.DoctorInfo;
 import com.amritsolution.model.dto.AppointmentDTO;
 import com.amritsolution.model.dto.DoctorDisplayDTO;
+import com.amritsolution.repository.DoctorTokenRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 @Slf4j
 public class TransformerServiceImpl implements TransformerService {
+    @Autowired
+    DoctorTokenRepository  doctorTokenRepository;
     @Override
     public DoctorDisplayDTO transformToDoctorDTO(DoctorInfo doctorInfo) {
         log.info("converting doctorInfo for doctorId:{}",doctorInfo.getDoctorId());
@@ -25,6 +30,10 @@ public class TransformerServiceImpl implements TransformerService {
         doctorDisplayDTO.setSex(doctorInfo.getSex());
         doctorDisplayDTO.setWorkingDays(doctorInfo.getWorkingDays());
         doctorDisplayDTO.setAvailableOnline(doctorInfo.isAvailableOnline());
+
+        boolean d=doctorTokenRepository.existsByDoctorIdAndDate(doctorInfo.getDoctorId(), LocalDate.now());
+        log.info("d:{}",d);
+        doctorDisplayDTO.setTokenAvailable(d);
         doctorDisplayDTO.setMedicalSpecialty(doctorInfo.getMedicalSpecialty());
         doctorDisplayDTO.setOpdRoomNo(doctorInfo.getOpdRoomNo());
 
