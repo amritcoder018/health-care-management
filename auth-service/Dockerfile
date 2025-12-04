@@ -1,24 +1,27 @@
-# Build Stage
+# Build stage
 FROM maven:3.9.2-eclipse-temurin-17 AS build
 
-# We will work inside /app
+# Work in /app
 WORKDIR /app
 
-# Copy the parent pom (from repo root) into /app
-COPY ../pom.xml ./pom.xml
+# Copy EVERYTHING from the repo root into Docker
+COPY .. .
 
-# Copy THIS module (auth-service) into /app/auth-service
-COPY . ./auth-service
+# Now the structure inside Docker is:
+# /app/pom.xml
+# /app/auth-service/pom.xml
+# /app/doctor-service
+# /app/patient-service
+# /app/laboratory-service
+# /app/api-gateway-service
+# /app/payment-service
 
-# Run Maven from /app, building only auth-service (parent pom is in /app/pom.xml)
+# Build ONLY auth-service
 RUN mvn -pl auth-service -am -DskipTests package
 
-# Runtime Stage
+# Runtime stage
 FROM eclipse-temurin:17-jre
 WORKDIR /app
-
-# Copy the built jar from the auth-service module
 COPY --from=build /app/auth-service/target/*.jar app.jar
 
 CMD ["java", "-jar", "app.jar"]
-
