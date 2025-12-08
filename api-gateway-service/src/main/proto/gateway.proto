@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.amritsolution.service.proto";
+option java_outer_classname = "GatewayProto";
+
+service Gateway {
+  rpc getAllDoctos(DoctorInfoRequest) returns (StringResponse) {}
+}
+message StringResponse {
+  string value = 1;
+}
+
+message DoctorInfoRequest{
+  int32 pageNo=1;
+  int32 pageSize=2;
+}
