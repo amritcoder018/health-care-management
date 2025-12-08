@@ -51,10 +51,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public ResponseEntity<Page<DoctorDisplayDTO>> fetchAllDoctorDtosForUI(int page, int size) {
+    public Page<DoctorDisplayDTO> fetchAllDoctorDtosForUI(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         log.info("service method to fetch and paginate the doctorinfo");
-        return ResponseEntity.ok().body(repository.findAll(pageable).map(transformerService::transformToDoctorDTO));
+        return repository.findAll(pageable).map(transformerService::transformToDoctorDTO);
        }
 
     @Override

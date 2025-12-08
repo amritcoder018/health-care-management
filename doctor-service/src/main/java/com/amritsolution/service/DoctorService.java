@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface DoctorService {
     ResponseEntity<DoctorDisplayDTO> fetchDoctorDtoForUI(String doctorId);
-    ResponseEntity<Page<DoctorDisplayDTO>> fetchAllDoctorDtosForUI(int page,int size);
+    Page<DoctorDisplayDTO> fetchAllDoctorDtosForUI(int page,int size);
     ResponseEntity<DoctorInfo> fetchDoctorProfile(String doctorId);
     ResponseEntity<List<DoctorInfo>> fetchAllDoctorsProfiles();
     ResponseEntity<?> addDoctorProfile(DoctorInfo doctorInfo);
