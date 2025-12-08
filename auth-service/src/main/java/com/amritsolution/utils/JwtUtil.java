@@ -11,14 +11,14 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final String SECRET = "your_super_secret_key_change_this_please_12345";
-    private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
+    private final String USER_SECRET = "your_super_secret_key_change_this_please_12345";
+    private final Key key = Keys.hmacShaKeyFor(USER_SECRET.getBytes());
 
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 24*60*60*1000)) // 1 day
+                .setExpiration(new Date(System.currentTimeMillis() + 2*60*1000)) // 2 min
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
