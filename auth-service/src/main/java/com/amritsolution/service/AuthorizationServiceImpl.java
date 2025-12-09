@@ -41,10 +41,10 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         String jwt=jwtUtil.generateToken(loginRequestDTO.getUsername());
         Cookie cookie = new Cookie("token", jwt);
         cookie.setHttpOnly(true);
-        cookie.setSecure(false);                   // local dev uses HTTP
+        cookie.setSecure(true);             // works on Render and does NOT break localhost
         cookie.setPath("/");
         cookie.setMaxAge(7 * 24 * 60 * 60);
-        cookie.setAttribute("SameSite", "Lax");
+        cookie.setAttribute("SameSite", "None");  // required for GitHub Pages cross-site cookie
         // 4. Add cookie to response
         response.addCookie(cookie);
 
