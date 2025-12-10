@@ -6,13 +6,16 @@ import com.amritsolution.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/public")
 public class DoctorController {
     @Autowired
     private DoctorService doctorService;
@@ -47,5 +50,9 @@ public class DoctorController {
     public ResponseEntity<?> getDoctorProfile(@PathVariable String id)
     {
         return doctorService.fetchDoctorProfile(id);
+    }
+    @GetMapping("/wakeup")
+    public Mono<String> wakeup() {
+        return Mono.just("doctor-service up");
     }
 }

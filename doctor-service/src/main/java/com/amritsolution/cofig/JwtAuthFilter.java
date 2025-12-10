@@ -1,4 +1,4 @@
-package com.amritsolution.configuration;
+package com.amritsolution.cofig;
 
 import com.amritsolution.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
@@ -29,18 +29,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
+        String path = request.getServletPath();
+        if (path.startsWith("/public/wakeup")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         String authHeader = request.getHeader("Authorization");
         Cookie[] cookies = request.getCookies();
         String token = null;
 
-        String path = request.getRequestURI();
-
-        // allow authentication endpoints without JWT
-        if (path.startsWith("/public/wakeup")) {
-            log.info("wakeup intercepted");
-            filterChain.doFilter(request, response);
-            return;
-        }
         if (cookies != null) {
             for (Cookie c : cookies) {
                 if (c.getName().equals("token")) {
