@@ -36,8 +36,8 @@ public class AuthController {
     @GetMapping("/wakeup")
     public Flux<String> aggregateResponses() {
         // URLs for the three downstream services
-        String gateway_service = "http://localhost:8085/public/wakeup";
-        String doctor_service = "http://localhost:8081/public/wakeup";
+        String gateway_service = "https://health-care-management-gateway-service.onrender.com/public/wakeup";
+        String doctor_service = "https://health-care-management-doctor-service.onrender.com/public/wakeup";
 
         // Create a Flux of Monos, each representing a call to one service
         Flux<String> combinedFlux = Flux.merge(
