@@ -43,9 +43,9 @@ public class DoctorController {
         return doctorService.addAllDoctorProfile(doctorInfos);
     }
     @GetMapping("/getAll")
-    public ResponseEntity<?> getAllDoctorProfile()
+    public ResponseEntity<?> getAllDoctorProfile(@RequestParam int page, @RequestParam int size)
     {
-        return doctorService.fetchAllDoctorsProfiles();
+        return doctorService.fetchAllDoctorsProfiles(page,size);
     }
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getDoctorProfile(@PathVariable String id)

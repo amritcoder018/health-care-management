@@ -12,7 +12,7 @@ public interface DoctorService {
     ResponseEntity<DoctorDisplayDTO> fetchDoctorDtoForUI(String doctorId);
     Page<DoctorDisplayDTO> fetchAllDoctorDtosForUI(int page,int size);
     ResponseEntity<DoctorInfo> fetchDoctorProfile(String doctorId);
-    ResponseEntity<List<DoctorInfo>> fetchAllDoctorsProfiles();
+    ResponseEntity<Page<DoctorInfo>> fetchAllDoctorsProfiles(int page,int size);
     ResponseEntity<?> addDoctorProfile(DoctorInfo doctorInfo);
     ResponseEntity<?> addAllDoctorProfile(List<DoctorInfo> doctorInfos);
     ResponseEntity<?> updateDoctorProfile(DoctorInfo doctorInfo);

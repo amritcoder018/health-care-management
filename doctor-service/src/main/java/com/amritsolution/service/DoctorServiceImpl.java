@@ -66,9 +66,9 @@ public class DoctorServiceImpl implements DoctorService {
 
 
     @Override
-    public ResponseEntity<List<DoctorInfo>> fetchAllDoctorsProfiles() {
-
-        return ResponseEntity.ok().body(repository.findAll());
+    public ResponseEntity<Page<DoctorInfo>> fetchAllDoctorsProfiles(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok().body(repository.findAll(pageable));
     }
 
     @Override

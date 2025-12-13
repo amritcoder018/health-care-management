@@ -20,7 +20,7 @@ public class GatewayService {
     public Mono<String> getAllDoctos(int pageSize, int pageNumber) {
         String token = jwtService.generateToken("gateway-service");
         return webClient.get()
-                .uri("https://health-care-management-doctor-service.onrender.com/public/getAll")
+                .uri("https://health-care-management-doctor-service.onrender.com/public/getAll?page="+pageNumber+"&size="+pageSize)
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
                 .retrieve().bodyToMono(String.class);
     }
