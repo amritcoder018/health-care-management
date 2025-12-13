@@ -1,6 +1,7 @@
 package com.amritsolution.controller;
 
 import com.amritsolution.model.dto.LoginRequestDTO;
+import com.amritsolution.model.dto.ServiceRunningStatus;
 import com.amritsolution.service.AuthorizationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -34,26 +35,9 @@ public class AuthController {
         return authorizationService.validate(request);
     }
     @GetMapping("/wakeup")
-    public Flux<String> aggregateResponses() {
-        // URLs for the three downstream services
-        String gateway_service = "https://health-care-management-gateway-service.onrender.com/public/wakeup";
-        String doctor_service = "https://health-care-management-doctor-service.onrender.com/public/wakeup";
+    public Mono<ServiceRunningStatus> wakeup() {
+        ServiceRunningStatus serviceStatusDto=new ServiceRunningStatus(1,"auth-service");
 
-        // Create a Flux of Monos, each representing a call to one service
-        Flux<String> combinedFlux = Flux.merge(
-                webClient.get().uri(gateway_service)
-                        .retrieve()
-                        .bodyToMono(String.class)
-                        .timeout(Duration.ofMinutes(3)),
-                        //.onErrorResume(e -> Mono.just(" gateway-service timed out")),
-                webClient.get().uri(doctor_service)
-                        .retrieve()
-                        .bodyToMono(String.class)
-                        .timeout(Duration.ofMinutes(3))
-                       // .onErrorResume(e -> Mono.just("doctor-service timed out"))
-        );
-
-        // Return the combined flux of responses
-        return combinedFlux;
+        return Mono.just(serviceStatusDto);
     }
 }

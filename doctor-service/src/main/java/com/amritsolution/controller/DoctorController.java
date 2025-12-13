@@ -1,6 +1,7 @@
 package com.amritsolution.controller;
 
 import com.amritsolution.model.db.DoctorInfo;
+import com.amritsolution.model.dto.ServiceRunningStatus;
 import com.amritsolution.repository.UpdateDoctorInfo;
 import com.amritsolution.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,9 @@ public class DoctorController {
         return doctorService.fetchDoctorProfile(id);
     }
     @GetMapping("/wakeup")
-    public Mono<String> wakeup() {
-        return Mono.just("doctor-service up");
+    public Mono<ServiceRunningStatus> wakeup() {
+        ServiceRunningStatus serviceStatusDto=new ServiceRunningStatus(1,"auth-service");
+
+        return Mono.just(serviceStatusDto);
     }
 }
