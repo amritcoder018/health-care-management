@@ -35,19 +35,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             return;
         }
         String authHeader = request.getHeader("Authorization");
-        Cookie[] cookies = request.getCookies();
-        String token = null;
-
-        if (cookies != null) {
-            for (Cookie c : cookies) {
-                if (c.getName().equals("token")) {
-                    token = c.getValue();
-                    log.info("token found in cookie {}", token);
-                }
-            }
-        }
-
-
+        String token=null;
         if (token==null && (authHeader == null || !authHeader.startsWith("Bearer "))) {
             log.info("Authorization header not present in request");
             writeError(response, "No access token provided");
@@ -55,6 +43,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
         else if(token==null){
             token = authHeader.substring(7);
+            log.info("token received : {}", token);
         }
         if (!jwtUtil.validateToken(token)) {
             log.info("Invalid token");

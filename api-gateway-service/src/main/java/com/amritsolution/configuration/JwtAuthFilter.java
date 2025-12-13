@@ -30,7 +30,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String authHeader = request.getHeader("Authorization");
-        Cookie[] cookies = request.getCookies();
         String token = null;
 
         String path = request.getRequestURI();
@@ -40,14 +39,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             log.info("wakeup intercepted");
             filterChain.doFilter(request, response);
             return;
-        }
-        if (cookies != null) {
-            for (Cookie c : cookies) {
-                if (c.getName().equals("token")) {
-                    token = c.getValue();
-                    log.info("token found in cookie {}", token);
-                }
-            }
         }
 
 

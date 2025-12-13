@@ -59,8 +59,7 @@ public class SecurityConfig {
                                 "https://amritkrfun018.github.io"     // production UI
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(true);
+                        .allowedHeaders("*");
             }
         };
     }

@@ -21,7 +21,7 @@ public class JwtUtil {
     private final Key serviceClientKey= Keys.hmacShaKeyFor(SERVICE_CLIENT_SECRET.getBytes());
 
     public Claims getClaimsFromToken(String token) {
-            return Jwts.parserBuilder().setSigningKey(key).build()
+            return Jwts.parserBuilder().setSigningKey(serviceClientKey).build()
                     .parseClaimsJws(token)
                     .getBody();
     }
@@ -32,7 +32,7 @@ public class JwtUtil {
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parserBuilder().setSigningKey(key).build().parse(token);
+            Jwts.parserBuilder().setSigningKey(serviceClientKey).build().parse(token);
             return true;
         } catch (Exception e) {
             return false;
